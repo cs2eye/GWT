@@ -1,0 +1,10 @@
+{
+  "name": "great-western-trail-vs-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A playable 2-player adaptation of Great Western Trail against an automated opponent, in the browser.",
+  "scripts": {
+    "test": "node test/sim.js 2 && node test/sim.js 2 --random",
+    "start": "python3 -m http.server 8000"
+  }
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Great Western Trail – vs AI</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Great Western Trail <span>— 2-player vs AI</span></h1>
+    <div class="controls">
+      <label>AI speed
+        <select id="speed">
+          <option value="1200">Slow</option>
+          <option value="550" selected>Normal</option>
+          <option value="150">Fast</option>
+        </select>
+      </label>
+      <button id="btn-rules">Rules</button>
+      <button id="btn-new">New game</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="board-col">
+      <div class="panel trail-panel">
+        <svg id="trail" viewBox="0 0 1080 540" role="img" aria-label="Trail map"></svg>
+      </div>
+      <div class="panel">
+        <h2>Railroad <small>— engine positions, stations (cost / VP) and delivery cities</small></h2>
+        <svg id="rail" viewBox="0 0 1080 130" role="img" aria-label="Railroad"></svg>
+      </div>
+      <div class="markets">
+        <div class="panel"><h2>Job market</h2><div id="job"></div></div>
+        <div class="panel"><h2>Foresight <small>(picked in Kansas City)</small></h2><div id="foresight"></div></div>
+        <div class="panel wide"><h2>Cattle market</h2><div id="market"></div></div>
+        <div class="panel wide"><h2>Objective cards</h2><div id="objectives"></div></div>
+        <div class="panel wide"><h2>Building reference</h2><div id="buildref"></div></div>
+      </div>
+    </section>
+
+    <aside class="side-col">
+      <div class="panel decision" id="decision"></div>
+      <div class="panel" id="me"></div>
+      <div class="panel" id="opp"></div>
+      <div class="panel"><h2>Log</h2><ol id="log"></ol></div>
+    </aside>
+  </main>
+
+  <div class="modal hidden" id="modal"><div class="modal-box" id="modal-box"></div></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
