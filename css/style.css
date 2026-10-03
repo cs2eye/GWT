@@ -10,6 +10,7 @@
   --good: #2e7d32;
   --hl: #ffb300;
 }
+:root { color-scheme: light; }
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -44,7 +45,7 @@ button:hover { border-color: var(--accent); }
   display: grid;
   grid-template-columns: minmax(0, 1fr) 380px;
   gap: 12px;
-  padding: 12px;
+  padding: 12px 16px;
   max-width: 1560px;
   margin: 0 auto;
 }
@@ -141,3 +142,14 @@ svg { width: 100%; height: auto; display: block; }
 .modal-box td, .modal-box th { border-bottom: 1px solid var(--line); padding: 3px 8px; text-align: right; }
 .modal-box td:first-child, .modal-box th:first-child { text-align: left; }
 .modal-box ul { padding-left: 20px; }
+
+/* Narrow screens: keep the decision panel pinned to the bottom so choices are always reachable. */
+@media (max-width: 1100px) {
+  .decision {
+    position: fixed; left: 8px; right: 8px; bottom: 0; z-index: 5; margin: 0;
+    max-height: 42vh; overflow-y: auto;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -4px 16px rgba(60, 40, 20, .3);
+  }
+  .layout { padding-bottom: 45vh; }
+}

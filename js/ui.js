@@ -389,8 +389,15 @@
   }
 
   // ------------------------------------------------------------ boot
-  window.addEventListener('DOMContentLoaded', () => {
-    $('btn-new').onclick = () => { if (!state || state.gameOver || confirm('Abandon the current game and start a new one?')) newGame(); };
+  function boot() {
+    // Two-click confirmation (browser confirm() dialogs are blocked in some embeds).
+    let armed = null;
+    $('btn-new').onclick = (e) => {
+      const btn = e.currentTarget;
+      if (!state || state.gameOver || armed) { clearTimeout(armed); armed = null; btn.textContent = 'New game'; newGame(); return; }
+      btn.textContent = 'Click again to restart';
+      armed = setTimeout(() => { armed = null; btn.textContent = 'New game'; }, 3000);
+    };
     $('btn-rules').onclick = showRules;
     $('speed').onchange = (e) => { speed = +e.target.value; };
     $('modal').addEventListener('click', (e) => { if (e.target.id === 'modal') hideModal(); });
@@ -398,5 +405,7 @@
     const saved = load();
     if (saved && !saved.gameOver && saved.players && saved.decision) { state = saved; after(); }
     else { newGame(); showRules(); }
-  });
+  }
+  if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', boot);
+  else boot();
 })(window.GWT);
