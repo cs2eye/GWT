@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bus – vs AI</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Bus <span>— you vs automated bus companies</span></h1>
+    <div class="controls">
+      <label>AI speed
+        <select id="speed">
+          <option value="900">Slow</option>
+          <option value="400" selected>Normal</option>
+          <option value="80">Fast</option>
+        </select>
+      </label>
+      <button id="btn-rules">Rules</button>
+      <button id="btn-new">New game</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="board-col">
+      <div class="panel map-panel">
+        <svg id="map" role="img" aria-label="City map"></svg>
+      </div>
+      <div class="panel">
+        <h2>Action board <small>— areas resolve left to right, spaces in order A–F</small></h2>
+        <div id="actions" class="actions"></div>
+      </div>
+    </section>
+
+    <aside class="side-col">
+      <div class="panel decision" id="decision"></div>
+      <div class="panel" id="status"></div>
+      <div class="panel" id="players"></div>
+      <div class="panel"><h2>Log</h2><ol id="log"></ol></div>
+    </aside>
+  </main>
+
+  <div class="modal hidden" id="modal"><div class="modal-box" id="modal-box"></div></div>
+
+  <script src="js/engine.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>

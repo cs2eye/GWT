@@ -66,3 +66,20 @@ The engine never needs to know who is choosing. It stops at `state.decision = { 
 npm test            # 2 AI-vs-AI games + 2 AI-vs-random games
 node test/sim.js 10 # more games, prints scores and timing
 ```
+
+---
+
+# Bus — play against 2–4 automated opponents
+
+`bus/` holds a separate browser game: an adaptation of Splotter Spellen's *Bus* for one human against 2, 3 or 4 bot bus companies. Open `bus/index.html`, or run `npm start` and visit http://localhost:8000/bus/. Like the game above, it needs no build step.
+
+- **The city.** A randomly generated street grid with three train stations and building sites in three zones. Inner zones must fill before outer ones.
+- **Rounds.** Players take turns placing action markers (20 for the whole game) on Line Expansion, Buses, Passengers, Buildings, Clock, Vroom! and Starting Player. You can't pass until you've placed at least as many markers as the most buses anyone owns. Actions then resolve in board order.
+- **Scoring.** Each Vroom! lets every bus carry one passenger along your line to an empty building of the type the clock shows (House → Office → Pub), for +1 VP. Each Clock action costs a time stone (−1 VP). The game ends when the 5th stone is taken, or when at most one player has markers left.
+- **Bots** (`bus/js/ai.js`) score each open action by its expected VP against the cost of spending a marker. They extend their lines toward stations and buildings, build where only their own line reaches, and drop passengers where rivals can't pick them up.
+- **Rules that differ from the published game.** Area sizes, passenger and building counts, the passenger supply and the street-sharing rule are simplified. The in-game **Rules** button describes the version implemented here.
+
+```
+node bus/test/sim.js 9          # bot-only games (3–5 players) with invariant checks
+node bus/test/sim.js 6 --random # one player picks randomly
+```
